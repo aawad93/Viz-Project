@@ -1,4 +1,4 @@
-var file = "processed_data/co2_map.csv"
+var file = "processed_data/energy_heatmap.csv"
 var years = [1960, 1970, 1980, 1990, 2000, 2010, 2017]
 
 // Create first tile layer
@@ -51,25 +51,24 @@ var legend = L.control({
 legend.onAdd = function() {
     var div = L.DomUtil.create("div", "legend");
     div.innerHTML =
-      "<p class='legend brown'> CO2 > 600 </p> <p class='legend orange'> CO2 > 400 </p> <p class='legend yellow'> CO2 > 200 </p> <p class='legend green'> CO2 < 200 </p>";
+      "<p class='legend brown'>  Million Tons of Oil Equivalent > 200 </p> <p class='legend orange'>  Million Tons of Oil Equivalent > 150 </p> <p class='legend yellow'>  Million Tons of Oil Equivalent > 100 </p> <p class='legend green'>  Million Tons of Oil Equivalent < 100 </p>";
     return div;
 };
 // Add the info legend to the map
 legend.addTo(map);
 
 d3.csv(file, function (co2Data){
-    var filtered = co2Data.filter(d => d.year == `1/1/2017`);
+    var filtered = co2Data.filter(d => d.year == `1/1/2018`);
     console.log(filtered)
     filtered.forEach(function (d) {
         circleMarkers = [];
-        var name = d.country
         var lat = d.lat; 
+        var name = d.country;
         var lng = d.lng;
-        var value = +d.co2;
-        var pop = +d.pop;
-        if (value > 600){
+        var value = +d.energy;
+        if (value > 200){
             var color= "brown";
-        } else if (value >400) {
+        } else if (value >150) {
             var color= "orange"
         } else if (value > 100){
             var color = "yellow"
@@ -78,12 +77,12 @@ d3.csv(file, function (co2Data){
         }
         // Change the values of these options to change the symbol's appearance
         let options = {
-          radius: pop/9000000,
+          radius: 20,
           color: color,
           weight: 1,
           opacity: 1,
           fillOpacity: 0.8,
         }
-        L.circleMarker([lat,lng], options).bindPopup(`<h1> ${name} </h1> <hr> <h3> CO2 Emissions: ${value} </h3> <h3> Population: ${pop}</h3>`).addTo(map);
+        L.circleMarker([lat,lng], options).bindPopup(`<h1> ${name} </h1> <hr> <h3> Million Tons of Oil Equivalent: ${value}`).addTo(map);
     })
 });
