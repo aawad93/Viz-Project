@@ -1,106 +1,87 @@
-// creating a class to wrap the heatmap cycling logic
-function AnimationPlayer(options) {
-    this.heatmap = options.heatmap;
-    this.data = options.data;
-    this.interval = null;
-    this.animationSpeed = options.animationSpeed || 300;
-    this.wrapperEl = options.wrapperEl;
-    this.isPlaying = false;
-    this.init();
+var file = "processed_data/co2_heatmap.csv"
+var years = [1960, 1970, 1980, 1990, 2000, 2010, 2017]
+
+// Create first tile layer
+var streetmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    maxZoom: 18,
+    id: "mapbox.streets",
+    accessToken: API_KEY
+});
+
+var satelitemap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg?access_token={accessToken}", {
+    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    maxZoom: 18,
+    id: "mapbox.satellite",
+    accessToken: API_KEY
+});
+
+var outdoorsemap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    maxZoom: 18,
+    id: "mapbox.outdoors",
+    accessToken: API_KEY
+});
+
+var baseMaps = {
+    Satellite: satelitemap,
+    Street: streetmap,
+    Outdoors: outdoorsemap
   };
-  // define the prototype functions
-  AnimationPlayer.prototype = {
-    init: function() {
-      var dataLen = this.data.length;
-      this.wrapperEl.innerHTML = '';
-      var playButton = this.playButton = document.createElement('button');
-      playButton.onclick = function() {
-        if (this.isPlaying) {
-          this.stop();
+
+// Create Map Object
+var map = L.map("map", {
+    center: [0, 0],
+    zoom: 2
+});
+
+// Add our tilelayers to the map 
+streetmap.addTo(map);
+outdoorsemap.addTo(map);
+satelitemap.addTo(map);
+
+L.control.layers(baseMaps, null).addTo(map);
+
+// Create a legend to display information about our map
+var legend = L.control({
+    position: "bottomright"
+});
+
+// When the layer control is added, insert a div with the class of "legend"
+legend.onAdd = function() {
+    var div = L.DomUtil.create("div", "legend");
+    div.innerHTML =
+      "<p class='legend white'> Magnitude < 1.0 </p> <p class='legend yellow'> Magnitude < 2.5 </p> <p class='legend orange'> Magnitude < 4.5 </p> <p class='legend red'> Magnitude > 4.5 </p>";
+    return div;
+};
+// Add the info legend to the map
+legend.addTo(map);
+
+d3.csv(file, function (co2Data){
+    var filtered = co2Data.filter(d => d.year == `1/1/2017`);
+    console.log(filtered)
+    filtered.forEach(function (d) {
+        circleMarkers = [];
+        var lat = d.latitude; 
+        var lng = d.longitude;
+        var value = +d.co2;
+        if (value > 100){
+            var color= "brown";
+        } else if (value >75) {
+            var color= "orange"
+        } else if (value > 50){
+            var color = "yellow"
         } else {
-          this.play();
+            var color= "green"
         }
-        this.isPlaying = !this.isPlaying;
-      }.bind(this);
-      playButton.innerText = 'play';
-  
-      this.wrapperEl.appendChild(playButton);
-  
-      var events = document.createElement('div');
-      events.className = 'heatmap-timeline';
-      events.innerHTML = '';
-  
-      for (var i = 0; i < dataLen; i++) {
-  
-        var xOffset = 100/(dataLen - 1) * i;
-  
-        var ev = document.createElement('div');
-        ev.className = 'time-point';
-        ev.style.left = xOffset+'%';
-  
-        ev.onclick = (function(i) {
-          return function() {
-            this.isPlaying = false;
-            this.stop();
-            this.setFrame(i);
-          }.bind(this);
-        }.bind(this))(i);
-  
-        events.appendChild(ev);
-  
-      }
-      this.wrapperEl.appendChild(events);
-      this.setFrame(0);
-    },
-    play: function() {
-      var dataLen = this.data.length;
-      this.playButton.innerText = 'pause';
-      this.interval = setInterval(function() {
-        this.setFrame(++this.currentFrame%dataLen);
-      }.bind(this), this.animationSpeed)
-    },
-    stop: function() {
-      clearInterval(this.interval);
-      this.playButton.innerText = 'play';
-    },
-    setFrame: function(frame) {
-      this.currentFrame = frame;
-      var snapshot = this.data[frame];
-      this.heatmap.setData(snapshot);
-      var timePoints = $('.heatmap-timeline .time-point');
-      for (var i = 0; i < timePoints.length; i++) {
-        timePoints[i].classList.remove('active');
-      }
-      timePoints[frame].classList.add('active');
-    },
-    setAnimationData: function(data) {
-      this.isPlaying = false;
-      this.stop();
-      this.data = data;
-      this.init();
-    },
-    setAnimationSpeed: function(speed) {
-      this.isPlaying = false;
-      this.stop();
-      this.animationSpeed = speed;
-    }
-  };
-  
-  var heatmapInstance = h337.create({
-    container: document.querySelector('.heatmap')
-  });
-  
-  // animationData contains an array of heatmap data objects
-  var animationData = [];
-  
-  // generate some heatmap data objects
-  for (var i = 0; i < 20; i++) {
-    animationData.push(generateRandomData(300));
-  }
-  
-  var player = new AnimationPlayer({
-    heatmap: heatmapInstance,
-    wrapperEl: document.querySelector('.timeline-wrapper'),
-    data: animationData,
-    animationSpeed: 100
-  });
+        // Change the values of these options to change the symbol's appearance
+        let options = {
+          radius: 5 ,
+          color: color,
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.8,
+        }
+        L.circleMarker([lat,lng], options).bindPopup(`<h1> co2 emissions: ${value} </h1>`).addTo(map);
+    })
+});

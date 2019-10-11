@@ -167,3 +167,7 @@ ul {
     padding: 10px;
     text-align: center;
   }
+
+  #map {
+    height: 600px;
+  }
