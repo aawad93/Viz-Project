@@ -171,3 +171,19 @@ ul {
   #map {
     height: 600px;
   }
+  
+  .brown {
+    background-color: brown;
+  }
+
+  .orange {
+    background-color: orange;
+  }
+
+  .yellow {
+    background-color: yellow;
+  }
+
+  .green {
+    background-color: green;
+  }

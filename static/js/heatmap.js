@@ -51,7 +51,7 @@ var legend = L.control({
 legend.onAdd = function() {
     var div = L.DomUtil.create("div", "legend");
     div.innerHTML =
-      "<p class='legend white'> Magnitude < 1.0 </p> <p class='legend yellow'> Magnitude < 2.5 </p> <p class='legend orange'> Magnitude < 4.5 </p> <p class='legend red'> Magnitude > 4.5 </p>";
+      "<p class='legend brown'> CO2 > 100 </p> <p class='legend orange'> CO2 > 75 </p> <p class='legend yellow'> CO2 > 50 </p> <p class='legend green'> CO2 < 50 </p>";
     return div;
 };
 // Add the info legend to the map
