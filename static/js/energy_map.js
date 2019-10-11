@@ -81,7 +81,7 @@ d3.csv(file, function (co2Data){
           color: color,
           weight: 1,
           opacity: 1,
-          fillOpacity: 0.8,
+          fillOpacity: 0.3,
         }
         L.circleMarker([lat,lng], options).bindPopup(`<h1> ${name} </h1> <hr> <h3> Million Tons of Oil Equivalent: ${value}`).addTo(map);
     })

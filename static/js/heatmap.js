@@ -58,7 +58,7 @@ legend.onAdd = function() {
 legend.addTo(map);
 
 d3.csv(file, function (co2Data){
-    var filtered = co2Data.filter(d => d.year == `1/1/2017`);
+    var filtered = co2Data.filter(d => d.year == `1/1/2010`);
     console.log(filtered)
     filtered.forEach(function (d) {
         circleMarkers = [];
@@ -78,11 +78,11 @@ d3.csv(file, function (co2Data){
         }
         // Change the values of these options to change the symbol's appearance
         let options = {
-          radius: pop/9000000,
+          radius: pop/10000000,
           color: color,
           weight: 1,
           opacity: 1,
-          fillOpacity: 0.8,
+          fillOpacity: 0.3,
         }
         L.circleMarker([lat,lng], options).bindPopup(`<h1> ${name} </h1> <hr> <h3> CO2 Emissions: ${value} </h3> <h3> Population: ${pop}</h3>`).addTo(map);
     })
