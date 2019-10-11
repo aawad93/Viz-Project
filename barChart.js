@@ -5,7 +5,7 @@
     const margin = {top: 10, right: 10, bottom: 20, left: 80};
     const width = 800 - margin.left - margin.right;
     const height = 280 - margin.top - margin.bottom;
-    const percentFormat = d3.format('.0%');
+    //const percentFormat = d3.format('.0%');
     const leftPadding = 5;
   
     const delay = function(d, i) {
@@ -28,7 +28,6 @@
           if (d[+k] === '..') {
             value = 0;
           } else {
-            /*value = +d[+k] / 100;*/
             value = +d[+k];
           }
           const newEntry = {
@@ -56,7 +55,7 @@
   
     const xScale = d3.scaleLinear()
         .range([0, width])
-        .domain([0, 4200]);
+        .domain([0, 2600]);
   
     const yScale = d3.scaleBand()
         .rangeRound([0, height], 0.1)
@@ -112,7 +111,7 @@
       .append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
   
-    fetch('./Total_Energy_Production_Cleaned.csv')
+    fetch('./Total_Energy_Production_Countries.csv')
       .then((res) => res.text())
       .then((res) => {
         const data = prepareData(d3.csvParse(res));
