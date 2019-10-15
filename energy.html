@@ -9,26 +9,26 @@
           <meta name="description" content="">
           <meta name="author" content="">
         
-          <title>Project 2</title>
-           <!-- Leaflet CSS -->
-      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
-        
-          <!-- Custom fonts for this template-->
-          <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-          <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-        
-          
+          <title>ENERGY </title>
+ 
+                <!-- Leaflet CSS -->
+          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />    
+
+          <!-- D3 -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+          <!-- Plotly -->
+          <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
           <!-- Bootstrap CSS -->
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
           <!-- Custom styles for this template-->
           <link href="style.css" rel="stylesheet">
-        
 
         </head>
         
         
         <body>
-            <!-- NEED TO ADD LINKS -->
+            <!-- NavBar and Links -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#"><h2>POLLUTION</h2></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,15 +47,37 @@
             <div class="bg">
         
                 <div class="container-fluid">
-                    <div id="map"></div>
-                    <h1> Energy Consumption by Country for 2018 </h1>
+                    <div class="row">
+                        <div id="map"style="height:440px; width:650px"></div>
+
+                        <div class="energyChart">
+                            <div class="wrapper">
+                                <h5 class="chart-title">Annual Energy Production (Mtoes): <span class="year"></span></h5>
+                                <div class="chart"></div>
+                                <p class="source">Data source: Enerdata</p>
+                            </div> 
+                        </div>
+
+                    </div> 
+                    
+                    <div class="row">
+                        <div class="chartTitle">
+                            <h4><b>Energy Consumption by Country for 2018</b></h4>  
+                        </div>
+                    </div>
                 </div> 
             </div>
-               
+              
+            <!-- Footer -->  
             <div class="footer">
                 <span>COPYRIGHT &copy; 1 ORCA FROM THE D3EP 2019</span>
             </div>
         
+
+            <!-- Animated Bar Chart -->
+            <script type="text/javascript" src="static/js/energyBar.js"></script>
+            <script src="//d3js.org/d3.v4.0.0-alpha.28.min.js"></script>
+            
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->  
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

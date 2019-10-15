@@ -1,10 +1,10 @@
-/* Animated Bar Chart: https://bl.ocks.org/deciob/ffd5c65629e43449246cb80a0af280c7 */
+/* ENERGY PAGE: Animated Bar Chart: https://bl.ocks.org/deciob/ffd5c65629e43449246cb80a0af280c7 */
 
     'use strict';
   
-    const margin = {top: 10, right: 10, bottom: 20, left: 80};
-    const width = 800 - margin.left - margin.right;
-    const height = 280 - margin.top - margin.bottom;
+    const margin = {top: 10, right: 20, bottom: 20, left: 100};
+    const width = 460 - margin.left - margin.right;
+    const height = 300 - margin.top - margin.bottom;
     //const percentFormat = d3.format('.0%');
     const leftPadding = 5;
   
@@ -55,7 +55,7 @@
   
     const xScale = d3.scaleLinear()
         .range([0, width])
-        .domain([0, 2600]);
+        .domain([0, 9900]);
   
     const yScale = d3.scaleBand()
         .rangeRound([0, height], 0.1)
@@ -111,7 +111,7 @@
       .append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
   
-    fetch('./Total_Energy_Production_Countries.csv')
+    fetch('./processed_data/CO2_byCountry.csv')
       .then((res) => res.text())
       .then((res) => {
         const data = prepareData(d3.csvParse(res));
