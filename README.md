@@ -1,5 +1,6 @@
 # Viz-Project
 Team1:  Orcas from the D3ep!
+
 Members:  Maria Soria, Andrew Awad, Christian Bordeau, & Carlos Quiroz
 GitHub Link:  https://github.com/aawad93/Viz-Project.git
 
