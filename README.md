@@ -3,7 +3,7 @@
 
 
 ## Research Team
-Maria Soria, Andrew Awad, Christian Bordeau, and Carlos Quiroz
+Maria Soria, Andrew Awad, Christian Bourdeau, and Carlos Quiroz
 
 ## Hypothesis
 High levels of CO2 emissions, population growth, and large-scale energy production are causing global warming.
