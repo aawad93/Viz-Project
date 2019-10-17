@@ -23,4 +23,4 @@ World Population by Country
 Energy Production by Country
 - https://yearbook.enerdata.net/total-energy/world-consumption-statistics.html
 
-Copyright Orcas of the D3ep 2019 (r)
+### Copyright Orcas of the D3epⓇ 2019
