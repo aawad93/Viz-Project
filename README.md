@@ -5,7 +5,7 @@ Maria Soria, Andrew Awad, Christian Bordeau, and Carlos Quiroz
 https://github.com/aawad93/Viz-Project.git
 
 ## Hypothesis
-High levels of CO2 emissions, population growth, and large-scale energy production is causing global warming.
+High levels of CO2 emissions, population growth, and large-scale energy production are causing global warming.
 
 ## Methodology
 1. Find data-sets on Population, CO2 Emissions, and Energy production for each country
