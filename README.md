@@ -28,4 +28,7 @@ World Population by Country
 Energy Production by Country
 - https://yearbook.enerdata.net/total-energy/world-consumption-statistics.html
 
+Latitude and Longitude by Country
+- https://developers.google.com/public-data/docs/canonical/countries_csv
+
 ### Copyright Orcas of the D3epⓇ 2019
