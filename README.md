@@ -1,4 +1,6 @@
 # What is Causing Global Warming?
+<img src="https://www.fairobserver.com/wp-content/uploads/2019/07/climate-climate-change-news-global-warming-global-warming-news.jpg" alt="Global Warming" title="Global Warming" />
+
 
 ## Research Team
 Maria Soria, Andrew Awad, Christian Bordeau, and Carlos Quiroz
