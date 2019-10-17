@@ -11,9 +11,12 @@ High levels of CO2 emissions, population growth, and large-scale energy producti
 2. Join all the data-sets by country into a CSV
 3. Utilize Tableau for data exploration / mock-ups
 4. Create an HTML page to display visualizations
-5. Design visualizations with D3.js, Leaflet,and Canvas.js    
+5. Design visualizations with D3.js, Leaflet,and Canvas.js
 
-## Data Used:
+## Conclusion
+CO2 emissions, population, and energy production all had positive correlations to global warming. The top 10 countries with the highlest levels of CO2 emissions also typically had high populations and produced a great deal of energy. For example China currently has the largest CO2 emissions to date, along with the largest population and energy production. This proves our hypothesis that CO2 emissions, population densisty, and high levels of energy production are making the Earth warmer over time.
+
+## Data-sets Used
 CO2 Emissions by Country
 - http://www.globalcarbonatlas.org/en/CO2-emissions
 
