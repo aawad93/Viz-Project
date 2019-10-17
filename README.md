@@ -6,7 +6,7 @@
 Maria Soria, Andrew Awad, Christian Bourdeau, and Carlos Quiroz
 
 ## Hypothesis
-High levels of CO2 emissions, population growth, and large-scale energy production are causing global warming.
+High levels of CO2 emissions, population, and large-scale energy production are causing global warming.
 
 ## Methodology
 1. Find data-sets on CO2 emissions, population, and energy production for each country
